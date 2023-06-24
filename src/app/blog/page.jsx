@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/posts", {
+  const res = await fetch("http://127.0.0.1:3000/api/posts", {
     cache: "no-store",
   });
 
@@ -12,11 +12,12 @@ async function getData() {
     throw new Error("Failed to fetch data");
   }
 
-  return res.json();
+  return await res.json();
 }
 
 const Blog = async () => {
   const data = await getData();
+
   return (
     <div className={styles.mainContainer}>
       {data.map((item) => (
